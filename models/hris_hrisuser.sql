@@ -20,7 +20,7 @@ SELECT
     {{ var("table_prefix") }}_employees.last_name as lastname,
     {{ var("table_prefix") }}_employees.contact_number as phone_number,
     NULL as language,
-    {{ var("table_prefix") }}_contracts.fr_employee_type as legal_entity_name,
+    legal_entity.legal_name as legal_entity_name,
     leader.email as manager_email,
     {{ var("table_prefix") }}_contracts.role as job_title,
     {{ var("table_prefix") }}_contracts.job_title as team,
@@ -64,3 +64,4 @@ FROM
             employee_id
     ) as leads on leads.employee_id = {{ var("table_prefix") }}_employees.id
     LEFT JOIN {{ var("table_prefix") }}_employees as leader ON leads.lead_id = leader.id
+    LEFT JOIN {{ var("table_prefix") }}_legal_entities as legal_entity ON legal_entity.id = {{ var("table_prefix") }}_employees.legal_entity_id
