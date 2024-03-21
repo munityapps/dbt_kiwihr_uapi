@@ -32,7 +32,7 @@ SELECT
     NULL as employee_number,
     {{ var("table_prefix") }}_contracts.fr_employee_type as contract_type,
     {{ var("table_prefix") }}_contracts.job_title as socio_professional_category,
-    {{ var("table_prefix") }}_employees.state as state
+    NULL as state
 FROM
     {{ var("table_prefix") }}_employees
     LEFT JOIN {{ var("table_prefix") }}_contracts ON {{ var("table_prefix") }}_employees.id = {{ var("table_prefix") }}_contracts.employee_id
